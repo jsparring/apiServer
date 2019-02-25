@@ -1,7 +1,8 @@
 const pool = require('../db');
 
 function createChallenge(req, res, next) {
-  const { challenge, tier, description, test } = req.body;
+  const { challenge, tier, description } = req.body;
+  console.log('create challenge', req.body);
   pool
     .connect()
     .then(client => {
@@ -12,8 +13,8 @@ function createChallenge(req, res, next) {
             client
               .query(
                 `INSERT INTO challenges 
-                (challenge, tier, description, test) 
-                VALUES ('${challenge}', '${tier}', '${description}', '${test}')`
+                (challenge, tier, description) 
+                VALUES ('${challenge}', '${tier}', '${description}')`
               )
               .then(() => {
                 res.status(200);

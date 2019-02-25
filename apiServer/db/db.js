@@ -11,8 +11,8 @@ const config = {
 
 const pool = new Pool(config);
 
-pool.on('error', (error, client) => {
-  console.error('Unexpected error in pool');
+pool.on('error', error => {
+  console.error('Unexpected error in pool', error);
 });
 
 module.exports = pool;
